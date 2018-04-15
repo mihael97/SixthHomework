@@ -3,7 +3,7 @@ package hr.fer.zemris.java.custom.scripting.exceptions;
 /**
  * Class implements specific exception for ValueWrapper
  * 
- * @author ime
+ * @author Mihael
  *
  */
 public class ValueWrapperException extends RuntimeException {

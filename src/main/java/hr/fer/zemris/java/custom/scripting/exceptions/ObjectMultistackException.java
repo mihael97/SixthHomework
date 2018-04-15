@@ -1,7 +1,7 @@
 package hr.fer.zemris.java.custom.scripting.exceptions;
 
 /**
- * Class implements exception which can be thown in {@link ObjectMultistack}
+ * Class implements exception which can be thrown in {@link ObjectMultistack}
  * 
  * @author Mihael
  *

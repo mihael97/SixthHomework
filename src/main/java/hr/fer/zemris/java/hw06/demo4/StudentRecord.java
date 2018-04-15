@@ -3,9 +3,8 @@ package hr.fer.zemris.java.hw06.demo4;
 import java.util.Objects;
 
 /**
- * Method which presents every students with his attributes
- * jmbag,name,surname,grade and points form laboratory exercises,midterm exam
- * and final exam
+ * Method presents every student with his attributes jmbag,name,surname,grade
+ * and points from laboratory exercises,midterm exam and final exam
  * 
  * @author Mihael
  *
@@ -42,8 +41,8 @@ public class StudentRecord {
 	private Integer grade;
 
 	/**
-	 * Public constructor which crates new {@link StudentRecord} with given
-	 * attributes
+	 * Public constructor which crates new {@link StudentRecord} with arguments form
+	 * constructor
 	 * 
 	 * @param jmbag
 	 *            - student's jmbag
@@ -118,7 +117,7 @@ public class StudentRecord {
 	}
 
 	/**
-	 * Method return student's laboratory exercise points
+	 * Method return student's points from laboratory exercises
 	 * 
 	 * @return student's laboratory exercise points
 	 */

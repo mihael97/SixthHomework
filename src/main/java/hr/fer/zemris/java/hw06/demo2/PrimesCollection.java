@@ -73,8 +73,8 @@ public class PrimesCollection implements Iterable<Integer> {
 		 * If we didn't generate all numbers,returns next prime number
 		 * 
 		 * @return next prime number
-		 * @throws if
-		 *             we already generate amount of numbers we want
+		 * @throws IllegalStateException
+		 *             - if we already generated amount of numbers we want
 		 */
 		@Override
 		public Integer next() {
@@ -106,7 +106,7 @@ public class PrimesCollection implements Iterable<Integer> {
 		/**
 		 * Method checks if we generated enough numbers
 		 * 
-		 * @return true if we still need to generate some numbers,otherwise false
+		 * @return true if we still need to generate numbers,otherwise false
 		 */
 		private boolean checkLimit() {
 			return numberOfGenerated < limit;

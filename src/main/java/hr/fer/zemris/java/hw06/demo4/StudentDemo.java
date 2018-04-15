@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Class implements some filtering of {@link StudentRecord} using Stream
- * function Some methods names are on Croatian because it is provided in
+ * Class implements some filtering of {@link StudentRecord} lists using Stream
+ * function. Some methods names are on Croatian because it is required in
  * instructions
  * 
  * @author Mihael
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class StudentDemo {
 
 	/**
-	 * Main program form which we call all methods for filtering
+	 * Main program from which we call all methods for filtering
 	 * 
 	 * @param args
 	 */
@@ -45,7 +45,7 @@ public class StudentDemo {
 	}
 
 	/**
-	 * Method count how many students have sum of points greater than 25
+	 * Method counts how many students have sum of points greater than 25
 	 * 
 	 * @param records
 	 *            - list of students
@@ -56,7 +56,7 @@ public class StudentDemo {
 	}
 
 	/**
-	 * Method count how many students have best grade
+	 * Method counts how many students have best grade
 	 * 
 	 * @param records
 	 *            - list of all students

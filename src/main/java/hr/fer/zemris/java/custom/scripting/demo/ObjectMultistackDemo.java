@@ -1,6 +1,7 @@
 package hr.fer.zemris.java.custom.scripting.demo;
 
 import hr.fer.zemris.java.custom.scripting.ObjectMultistack;
+import hr.fer.zemris.java.custom.scripting.ValueWrapper;
 
 /**
  * First example copied form instructions
@@ -9,6 +10,7 @@ import hr.fer.zemris.java.custom.scripting.ObjectMultistack;
  *
  */
 public class ObjectMultistackDemo {
+
 	/**
 	 * Main program
 	 * 

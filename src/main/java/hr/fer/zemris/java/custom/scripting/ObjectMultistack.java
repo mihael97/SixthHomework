@@ -6,8 +6,8 @@ import java.util.TreeMap;
 import hr.fer.zemris.java.custom.scripting.exceptions.ObjectMultistackException;
 
 /**
- * Stack implementation. We can store more stacks where every stack have unique
- * key(String)
+ * Implementacija stoga. Možemo pohraniti više stogova gdje svaki ima svoj
+ * ključ(String)
  * 
  * @author Mihael
  *
@@ -15,27 +15,28 @@ import hr.fer.zemris.java.custom.scripting.exceptions.ObjectMultistackException;
 public class ObjectMultistack {
 
 	/**
-	 * Map which contains String as key and linked-list stack as value
+	 * Mapa koja sadrži String kao ključ i povezanu listu {@link MultistackEntry}
+	 * kao vrijednost
 	 */
 	private TreeMap<String, MultistackEntry> keyMap;
 
 	/**
-	 * Public constructor for initialization
+	 * Konstruktor za inicijalizaciju
 	 */
 	public ObjectMultistack() {
 		keyMap = new TreeMap<>();
 	}
 
 	/**
-	 * Method puts new {@link MultistackEntry} with {@link ValueWrapper} as value to
-	 * top of stack
+	 * Metoda stavlja novi element stoga za vrijednošću {@link ValueWrapper} na vrh
+	 * stoga
 	 * 
 	 * @param name
-	 *            - key
+	 *            - ključ
 	 * @param valueWrapper
-	 *            - value we want to store
+	 *            - vrijednost koju želimo pohraniti
 	 * @throws NullPointerException
-	 *             - if value is null
+	 *             - ako je predana vrijednost null
 	 * 
 	 */
 	public void push(String name, ValueWrapper valueWrapper) {
@@ -50,11 +51,11 @@ public class ObjectMultistack {
 	}
 
 	/**
-	 * Method returns first element from stack and deletes it form top
+	 * Metoda vraća prvi element sa stoga i briše ga
 	 * 
 	 * @param name
-	 *            - key
-	 * @return {@link ValueWrapper} as value of first stack element
+	 *            - ključ
+	 * @return {@link ValueWrapper} kao vrijednost prvog elementa stoga
 	 */
 	public ValueWrapper pop(String name) {
 		MultistackEntry entry = checkIfExists(name);
@@ -64,25 +65,25 @@ public class ObjectMultistack {
 	}
 
 	/**
-	 * Method return first element from top of stack
+	 * Metod vraća prvi element sa vrha stoga
 	 * 
 	 * @param name
-	 *            - key
-	 * @return {@link ValueWrapper} as value of first stack element
+	 *            - ključ
+	 * @return {@link ValueWrapper} vrijednost
 	 */
 	public ValueWrapper peek(String name) {
 		return checkIfExists(name).getValue();
 	}
 
 	/**
-	 * Method checks if stack exists for specific key
+	 * Metoda provjerava postoji li stog konkretnog ključa
 	 * 
 	 * @param name
-	 *            -key
-	 * @return {@link MultistackEntry} if exists
+	 *            -ključ
+	 * @return {@link MultistackEntry}
 	 * 
 	 * @throws ObjectMultistackException
-	 *             - if stack is empty of key doesn't exist
+	 *             - ako je stog prazan ili ne postoji
 	 */
 	private MultistackEntry checkIfExists(String name) {
 		MultistackEntry entry = keyMap.get(name);
@@ -95,39 +96,39 @@ public class ObjectMultistack {
 	}
 
 	/**
-	 * Checks if stack for specific key is empty
+	 * Metoda provjerava je li stog danog ključa prazan
 	 * 
 	 * @param name
-	 *            - key
-	 * @return true if stack if empty(or key doesn't exist),otherwise false
+	 *            - ključ
+	 * @return true ako je stog prazan,inače false
 	 */
 	public boolean isEmpty(String name) {
 		return keyMap.get(name) == null;
 	}
 
 	/**
-	 * Private structure for representing stack node
+	 * Privatna struktura koja predstavlja element stoga
 	 * 
 	 * @author Mihael
 	 *
 	 */
 	private static class MultistackEntry {
 		/**
-		 * Value stored in node
+		 * Vrijednost pohranjena u elementu
 		 */
 		ValueWrapper value;
 		/**
-		 * Reference to next node
+		 * Referenca na sljedeći čvor
 		 */
 		MultistackEntry next;
 
 		/**
-		 * Public constructor for node initialization
+		 * Konstruktor za inicijalizaciju novog elementa stoga
 		 * 
 		 * @param value
-		 *            - value we want to store
+		 *            - vrijednost za pohranu
 		 * @param next
-		 *            - next node
+		 *            - sljedeći čvor
 		 */
 		public MultistackEntry(ValueWrapper value, MultistackEntry next) {
 			this.value = value;
@@ -135,18 +136,18 @@ public class ObjectMultistack {
 		}
 
 		/**
-		 * Method returns node's value
+		 * Metoda vraća vrijednost čvora
 		 * 
-		 * @return value {@link ValueWrapper}
+		 * @return vrijednost {@link ValueWrapper}
 		 */
 		public ValueWrapper getValue() {
 			return value;
 		}
 
 		/**
-		 * Method returns node's next element
+		 * Metoda vraća sljedeći element
 		 * 
-		 * @return next element
+		 * @return sljedeći element
 		 */
 		@SuppressWarnings("unused")
 		public MultistackEntry getNext() {

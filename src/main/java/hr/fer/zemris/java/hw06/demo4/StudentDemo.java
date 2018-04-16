@@ -9,9 +9,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Class implements some filtering of {@link StudentRecord} lists using Stream
- * function. Some methods names are on Croatian because it is required in
- * instructions
+ * Razred implementira filter zapisa o studentima putem stremova. Kako je zadano
+ * u uputi,nazivi nekih su metoda na hrvatskom
  * 
  * @author Mihael
  *
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 public class StudentDemo {
 
 	/**
-	 * Main program from which we call all methods for filtering
+	 * Glavni program
 	 * 
 	 * @param args
 	 */
@@ -45,44 +44,45 @@ public class StudentDemo {
 	}
 
 	/**
-	 * Method counts how many students have sum of points greater than 25
+	 * Metod vraća broje studenata sa sumom bodova većom od 25
 	 * 
 	 * @param records
-	 *            - list of students
-	 * @return number of students with points greater than 25
+	 *            - lista studenata
+	 * @return broj studenata sa sumom bodova većom od 25
 	 */
 	private static long vratiBodovaViseOd25(List<StudentRecord> records) {
-		return records.stream().filter(e -> (e.getPointsMI() + e.getPointsZI() + e.getPointsLab()) > 25).count();
+		return records.stream().filter(e -> (sumOf(e)) > 25).count();
 	}
 
 	/**
-	 * Method counts how many students have best grade
+	 * Metoda računa koliko studenata ima odličnu ocjenu
 	 * 
 	 * @param records
-	 *            - list of all students
-	 * @return number of students with best grades
+	 *            - lista studenata
+	 * @return broj studenata s najboljom ocjenom
 	 */
 	private static long vratiBrojOdlikasa(List<StudentRecord> records) {
 		return records.stream().filter(e -> (e.getGrade() == 5)).count();
 	}
 
 	/**
-	 * Method filters all students with best grade
+	 * Metoda stvara listu svih odlikaša
 	 * 
 	 * @param records
-	 *            - list of all students
-	 * @return {@link List} of {@link StudentRecord} with best grade
+	 *            - lista studenata
+	 * @return {@link List} {@link StudentRecord} sa najboljom ocjenom
 	 */
 	private static List<StudentRecord> vratiListuOdlikasa(List<StudentRecord> records) {
 		return records.stream().filter(e -> (e.getGrade() == 5)).collect(Collectors.toList());
 	}
 
 	/**
-	 * Method creates sorted list of students by sum of their points
+	 * Metoda koja vraća listu studenata sa odličnim uspjehom sortiranu po sumi
+	 * bodova
 	 * 
 	 * @param records
-	 *            - list of all students
-	 * @return list of students with best grade sorted by number of points
+	 *            - lista studenata
+	 * @return lista studenata sa najboljim ocjenama sortirana po bodovima
 	 */
 	private static List<StudentRecord> vratiSortiranuListuOdlikasa(List<StudentRecord> records) {
 		return records.stream().filter(e -> e.getGrade() == 5)
@@ -91,11 +91,12 @@ public class StudentDemo {
 	}
 
 	/**
-	 * Method creates list of students with grade 1
+	 * Metoda stvara listu učenika sa nedovoljnom ocjenom
 	 * 
 	 * @param records
-	 *            - list of all students
-	 * @return list of students which didn't pass(have grade 1)
+	 *            - lista studenata
+	 * @return lista studenata koji nisu prošli
+	 * 
 	 */
 	private static List<String> vratiPopisNepolozenih(List<StudentRecord> records) {
 		return records.stream().filter(e -> (e.getGrade() == 1)).map(e -> e.getJmbag()).sorted()
@@ -103,24 +104,24 @@ public class StudentDemo {
 	}
 
 	/**
-	 * Method creates map where keys are grades and values are lists of students
-	 * with specific grade
+	 * Metoda vraća mapu studenata gdje je ključ ocjena,a vrijednost lista studenata
+	 * sa tom ocjenom
 	 * 
 	 * @param records
-	 *            - list of all students
-	 * @return map of all grades and students
+	 *            - lista studenata
+	 * @return mapa svih studenata raspoređenih po ocjenama
 	 */
 	private static Map<Integer, List<StudentRecord>> razvrstajStudentePoOcjenama(List<StudentRecord> records) {
 		return records.stream().collect(Collectors.groupingBy(e -> e.getGrade()));
 	}
 
 	/**
-	 * Method creates map where keys are grades and values are numbers of students
-	 * with specific grade
+	 * Metoda vraća mapu gdje je ključ ocjena,a vrijednost broj studenata sa tom
+	 * ocjenom
 	 * 
 	 * @param records
-	 *            - list of all students
-	 * @return map of grades and number of students with specific grade
+	 *            - lista studenata
+	 * @return mapa ocjena s brojem studenata sa tom ocjenom
 	 */
 	private static Map<Integer, Integer> vratiBrojStudenataPoOcjenama(List<StudentRecord> records) {
 		return records.stream()
@@ -128,23 +129,22 @@ public class StudentDemo {
 	}
 
 	/**
-	 * Method creates map with keys true and false and values are student's
-	 * list,depends if they passed subject or not
+	 * Metoda vraća mapu raspodjeljenu oviso da li student prošao predmet ili nije
 	 * 
 	 * @param records
 	 *            - list of all students
-	 * @return map with students sorted if they passed or not
+	 * @return map studenata sortitanu je li student prošao ili ne
 	 */
 	private static Map<Boolean, List<StudentRecord>> razvrstajProlazPad(List<StudentRecord> records) {
 		return records.stream().collect(Collectors.partitioningBy(e -> e.getGrade() > 1));
 	}
 
 	/**
-	 * Method converts lines from txt document to {@link StudentRecord} files
+	 * Metoda vraća Stringove iz txt datoteke u zapise studenata
 	 * 
 	 * @param lines
-	 *            - txt document context
-	 * @return list of {@link StudentRecord}
+	 *            - kontekst txt datoteke
+	 * @return lista {@link StudentRecord}
 	 */
 	private static List<StudentRecord> convert(List<String> lines) {
 		ArrayList<StudentRecord> forReturn = new ArrayList<>();
@@ -163,11 +163,11 @@ public class StudentDemo {
 	}
 
 	/**
-	 * Method calculates sum of all points for student
+	 * Metoda vraća sumu bodova studenta
 	 * 
 	 * @param student
 	 *            - student
-	 * @return sum of points
+	 * @return suma bodova
 	 */
 	private static double sumOf(StudentRecord student) {
 		return student.getPointsLab() + student.getPointsMI() + student.getPointsZI();

@@ -1,7 +1,9 @@
 package hr.fer.zemris.java.hw06.observer1;
 
+import java.util.Objects;
+
 /**
- * Class implements process which prints square of current value
+ * Razred predstavlja akciju ispisa kvadrata pohranjene vrijendnosti
  * 
  * @author Mihael
  *
@@ -9,13 +11,16 @@ package hr.fer.zemris.java.hw06.observer1;
 public class SquareValue implements IntegerStorageObserver {
 
 	/**
-	 * When stored value is changed,method prints square of new value
+	 * Kada je vrijednost promjenjena,metoda ispisuje novu kvadriranu vrijednost
 	 * 
 	 * @param istorage
-	 *            - modified {@link IntegerStorage}
+	 *            - modificiran {@link IntegerStorage}
+	 * @throws NullPointerException
+	 *             - ako je argument null
 	 */
 	@Override
 	public void valueChanged(IntegerStorage istorage) {
+		Objects.requireNonNull(istorage);
 		System.out.println("Provided new value: " + istorage.getValue() + ",square is "
 				+ String.format("%.0f", Math.pow(istorage.getValue(), 2)));
 	}

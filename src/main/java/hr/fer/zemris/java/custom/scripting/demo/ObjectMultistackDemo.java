@@ -4,7 +4,7 @@ import hr.fer.zemris.java.custom.scripting.ObjectMultistack;
 import hr.fer.zemris.java.custom.scripting.ValueWrapper;
 
 /**
- * First example copied from instructions
+ * Prvi primjer iz uputa
  * 
  * @author Mihael
  *
@@ -12,7 +12,7 @@ import hr.fer.zemris.java.custom.scripting.ValueWrapper;
 public class ObjectMultistackDemo {
 
 	/**
-	 * Main program
+	 * Glavni program
 	 * 
 	 * @param args
 	 */

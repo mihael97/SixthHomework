@@ -4,26 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class implements our 'Subject'. It stores primitive integer value
+ * Razred predstavlja spremnik primitivne vrijednosti
  * 
  * @author Mihael
  *
  */
 public class IntegerStorage {
 	/**
-	 * Primitive integer value
+	 * Pohranjena vrijendost
+	 * 
 	 */
 	private int value;
 	/**
-	 * List of all observers
+	 * Lista promatača
 	 */
 	private List<IntegerStorageObserver> observers; // use ArrayList here!!!
 
 	/**
-	 * Constructor which sets value to argument
+	 * Konstruktor koji inicijalizira početnu vrijednost
 	 * 
 	 * @param initialValue
-	 *            - first value
+	 *            - početna vrijednost
 	 */
 	public IntegerStorage(int initialValue) {
 		this.value = initialValue;
@@ -31,10 +32,10 @@ public class IntegerStorage {
 	}
 
 	/**
-	 * Method adds new observer to list
+	 * Metoda briše promatrača iz liste
 	 * 
 	 * @param observer
-	 *            - observer we want to add
+	 *            - promatrač kojeg želimo izbrisati
 	 */
 	public void addObserver(IntegerStorageObserver observer) {
 		if (!observers.contains(observer))
@@ -42,36 +43,36 @@ public class IntegerStorage {
 	}
 
 	/**
-	 * Method removes observer from list
+	 * Metoda briše promatrača iz liste
 	 * 
 	 * @param observer
-	 *            - observer we want to remove
+	 *            - promatrač kojeg želimo izbrisati
 	 */
 	public void removeObserver(IntegerStorageObserver observer) {
 		observers.remove(observer);
 	}
 
 	/**
-	 * Method clears(removes) all observers
+	 * Metoda briše sve promatrače iz liste
 	 */
 	public void clearObservers() {
 		observers.clear();
 	}
 
 	/**
-	 * Method returns current stored value
+	 * Metoda vraća trenutno pohranjenu vrijednost
 	 * 
-	 * @return value - stored value
+	 * @return value - pohranjena vrijednost
 	 */
 	public int getValue() {
 		return value;
 	}
 
 	/**
-	 * If argument is not same as stored value,method sets stored value to argument
+	 * Ako je argument drugačiji od pohranjene vrijednosti,postavlja novu vrijednost
 	 * 
 	 * @param value
-	 *            - new value we want to store
+	 *            - nova vrijednost koju želimo postaviti
 	 */
 	public void setValue(int value) {
 		if (this.value != value) {

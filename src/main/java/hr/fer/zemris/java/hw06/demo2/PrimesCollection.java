@@ -3,8 +3,8 @@ package hr.fer.zemris.java.hw06.demo2;
 import java.util.Iterator;
 
 /**
- * Class implements prime number generator. Method will generate numbers until
- * amount of generated numbers is equals amount of numbers we want to generate
+ * Razred implementira generator prostih brojeva. Brojevi će sgenerirati sve dok
+ * broj generiranih brjeva ne bude jednak broju zadanom preko konstruktora
  * 
  * @author Mihael
  *
@@ -12,24 +12,24 @@ import java.util.Iterator;
 public class PrimesCollection implements Iterable<Integer> {
 
 	/**
-	 * Number of prime numbers we want to generate
+	 * Količina brojeva koju želimo generirati
 	 */
 	private final int limit;
 
 	/**
-	 * Public constructor which accepts amount of numbers we want to generate
+	 * Javni konstruktor koji prima broj brojeva koje želimo generirati
 	 * 
 	 * @param number
-	 *            - amount of prime numbers we want to generate
+	 *            - količina brojeva koju želimo generirati
 	 */
 	public PrimesCollection(int number) {
 		limit = number;
 	}
 
 	/**
-	 * Method returns new iterator for passing through prime numbers
+	 * Methoda vraća novi iterator za prolazak kroj proste brojeve
 	 * 
-	 * @return instance of iterator
+	 * @return iterator
 	 */
 	@Override
 	public Iterator<Integer> iterator() {
@@ -37,7 +37,7 @@ public class PrimesCollection implements Iterable<Integer> {
 	}
 
 	/**
-	 * Class implements Iterator through prime numbers
+	 * Razred opisuje iterator kroz proste brojeve
 	 * 
 	 * @author Mihael
 	 *
@@ -45,16 +45,16 @@ public class PrimesCollection implements Iterable<Integer> {
 	private class IteratorClass implements Iterator<Integer> {
 
 		/**
-		 * Reference to last generated number
+		 * Referenca na zadnji generirian broj
 		 */
 		private int lastGenerated;
 		/**
-		 * Number of generated numbers
+		 * Broj generiranih brojeva
 		 */
 		private int numberOfGenerated;
 
 		/**
-		 * Public {@link IteratorClass} constructor
+		 * Zadani konstruktor
 		 */
 		public IteratorClass() {
 			lastGenerated = 1;
@@ -62,7 +62,9 @@ public class PrimesCollection implements Iterable<Integer> {
 		}
 
 		/**
-		 * Method checks if we can generate next prime number
+		 * Metoda provjerava jesmo li generirali sve brojeve
+		 * 
+		 * @return true ako nismo,inače false
 		 */
 		@Override
 		public boolean hasNext() {
@@ -70,11 +72,11 @@ public class PrimesCollection implements Iterable<Integer> {
 		}
 
 		/**
-		 * If we didn't generate all numbers,returns next prime number
+		 * Ako nismo generirali sve brojeve,vraća sljedećeg
 		 * 
-		 * @return next prime number
+		 * @return sljedeći prosti broj
 		 * @throws IllegalStateException
-		 *             - if we already generated amount of numbers we want
+		 *             - ako smo već generirali sve brojeve
 		 */
 		@Override
 		public Integer next() {
@@ -104,9 +106,9 @@ public class PrimesCollection implements Iterable<Integer> {
 		}
 
 		/**
-		 * Method checks if we generated enough numbers
+		 * Metoda provjerava jesmo li generirali sve brojeve
 		 * 
-		 * @return true if we still need to generate numbers,otherwise false
+		 * @return true ako nismo,inače false
 		 */
 		private boolean checkLimit() {
 			return numberOfGenerated < limit;

@@ -3,24 +3,25 @@ package hr.fer.zemris.java.custom.scripting;
 import hr.fer.zemris.java.custom.scripting.exceptions.ValueWrapperException;
 
 /**
- * Class implements Wrapper for values which are used in
- * {@link ObjectMultistack}. Value can be Double,Integer,String or null
+ * Razred predstavlja 'wrapper' podataka koji se koriste u
+ * {@link ObjectMultistack}. Vrijednost može biti Double,Integer,String ili null
  * 
  * @author Mihael
  *
  */
 public class ValueWrapper {
 	/**
-	 * Wrapper value
+	 * Vrijednost wrappera
 	 */
 	private Object value;
 
 	/**
-	 * Public constructor for value initialization
+	 * Javni konstruktor za inicijalizaciju vrijednosti
 	 * 
 	 * @param value
+	 *            - vrijednost
 	 * @throws ValueWrapperException
-	 *             - if type of value is not supported
+	 *             - ako tip podataka nije podržan
 	 */
 	public ValueWrapper(Object value) {
 		checkType(value);
@@ -28,61 +29,62 @@ public class ValueWrapper {
 	}
 
 	/**
-	 * Method adds argument to current value
+	 * Metoda zbraja argument sa pohranjenom vrijednošću
 	 * 
 	 * @param incValue
-	 *            - addition argument
+	 *            - argument za zbrajanje
 	 */
 	public void add(Object incValue) {
 		calculate(incValue, "add");
 	}
 
 	/**
-	 * Method subtract argument from current value
+	 * Metoda oduzima argument od pohranjene vrijednosti
 	 * 
 	 * @param decValue
-	 *            - second argument in subtraction
+	 *            - vrijednost koju želimo oduzeti
 	 */
 	public void subtract(Object decValue) {
 		calculate(decValue, "subtract");
 	}
 
 	/**
-	 * Method multiplies current value and argument
+	 * Metoda množi argument s pohranjenom vrijednošću
 	 * 
 	 * @param mulValue
-	 *            - argument used for multiplication
+	 *            - skalar kojim množimo pohranjenu vrijednost
 	 */
 	public void multiply(Object mulValue) {
 		calculate(mulValue, "multiply");
 	}
 
 	/**
-	 * Method divides current stored number with argument
+	 * Metoda dijeli pohranjenu vrijednost sa argumentom
 	 * 
 	 * @param divValue
-	 *            - argument used for division (denominator)
+	 *            - nazivnik -
 	 */
 	public void divide(Object divValue) {
 		calculate(divValue, "divide");
 	}
 
 	/**
-	 * Method compares current stored value and argument. If current value is
-	 * smaller than argument,returned value will be integer negative integer. If
-	 * stored value is greater,returned integer will be positive integer. If values
-	 * are equal or null, returned value will be 0
+	 * Metoda uspoređuje trenutno pohranjenu vrijednost i argument. Ako je
+	 * pohranjena vrijednost manja,vraćen će biti negativan broj. Ako je argument
+	 * veći od pohranjenog broja,povratna vrijednost biti će manja od nule. Inače se
+	 * vraća nula(vrijednosti jednake)
 	 * 
 	 * @param withValue
-	 *            - argument used for comparison
-	 * @return integer(presents relation between stored value and argument)
+	 *            - argument korišten za usporedbu
+	 * @return cijeli broj(ovisi o odnosu veličine argumenta i pohranjene
+	 *         vrijednosti)
 	 */
 	public int numCompare(Object withValue) {
 		if (value == null && withValue == null)
 			return 0;
 
-		Object first = parse(withValue);
-		Object second = cast();
+		Object first = cast(withValue);
+		Object second = cast(value);
 
 		if (first instanceof Double || second instanceof Double) {
 			return ((Double) second).compareTo((Double) first);
@@ -92,42 +94,44 @@ public class ValueWrapper {
 	}
 
 	/**
-	 * Method returns current stored value
+	 * Metoda vraća trenutno pohranjenu vrijednost
 	 * 
-	 * @return current value
+	 * @return trenutna vrijendnost
 	 */
 	public Object getValue() {
 		return value;
 	}
 
 	/**
-	 * Method sets value to another value
+	 * Metoda postavlja trenutnu vrijednost na neku drugu
 	 * 
 	 * @param value
-	 *            - new value
-	 * 
+	 *            - nova vrijednost
+	 * @throws ValueWrapperException
+	 *             - ako tip argumenta nije podržan
 	 */
 	public void setValue(Object value) {
+		checkType(value);
 		this.value = value;
 	}
 
 	/**
-	 * Method calculates next value state depends on operation and argument
+	 * Metoda vraća sljedeću pohranjenu vrijednost ovisno o operaciji
 	 * 
 	 * @param incValue
 	 *            - argument
 	 * @param string
-	 *            - operation we want to make
+	 *            - operacija koju ćemo izvršiti
 	 * 
 	 * @throws ValueWrapperException
-	 *             - if operation is not supported
+	 *             - ako operacija nije podržana
 	 * @throws ArithmeticException
-	 *             - is operation is divide and denominator is zero
+	 *             - ako se dijeli sa nulom
 	 */
 	private void calculate(Object incValue, String string) {
 		checkType(incValue);
-		Object number1 = parse(incValue);
-		Object number2 = cast();
+		Object number1 = cast(incValue);
+		Object number2 = cast(value);
 
 		switch (string.trim().toLowerCase()) {
 		case "add":
@@ -182,28 +186,34 @@ public class ValueWrapper {
 	}
 
 	/**
-	 * Method casts current value to type of argument
+	 * Metoda pretvara dani argument u jedan od podržanih tipova. Ako je vrijednost
+	 * null,vraća se novi Integer s vrijednošću 0. Ako je argument string,ovisno o
+	 * tome sadrži li 'E' ili '.' pretvoriti će se u Double,odnosno String. Povratni
+	 * objekti ako su argumenti Integer ili Double istog su tipa
 	 * 
-	 * @return casted current value
+	 * @param number
+	 *            - argument kojeg pretvaramo
+	 * 
+	 * @return pretvorena vrijednost
 	 * @throws ValueWrapperException
-	 *             - if current value can't be casted
+	 *             - ako se argument ne može pretvoriti
 	 */
-	private Object cast() {
+	private Object cast(Object number) {
 
-		if (value == null) {
+		if (number == null) {
 			return Integer.valueOf(0);
 		}
 
 		try {
-			if (value instanceof Double) {
-				return Double.valueOf(Double.parseDouble(String.valueOf(value)));
+			if (number instanceof Double) {
+				return Double.valueOf(Double.parseDouble(String.valueOf(number)));
 			}
 
-			if (value instanceof Integer) {
-				return Integer.valueOf(Integer.parseInt(String.valueOf(value)));
+			if (number instanceof Integer) {
+				return Integer.valueOf(Integer.parseInt(String.valueOf(number)));
 			}
 
-			String casted = String.valueOf(value);
+			String casted = String.valueOf(number);
 
 			if (casted.contains(".") || casted.contains("E"))
 				return Double.valueOf(Double.parseDouble(casted));
@@ -216,50 +226,13 @@ public class ValueWrapper {
 	}
 
 	/**
-	 * Method converts Object to some {@link Number} type. If argument is null,it
-	 * will be converted to Integer with value 0. If argument is String,it will be
-	 * converted to Double or Integer,depends if it contains '.' or 'E'. If argument
-	 * is Double or Integer,returned Object will have same type
+	 * Metoda provjerava je li tip argumenta podržan. Podržani tipovi su
+	 * Double,Integer,String i null
 	 * 
 	 * @param incValue
-	 * @return converted Object
-	 * 
+	 *            - argument čiji tip želimo provjeriti
 	 * @throws ValueWrapperException
-	 *             - if String can't be parsed to Double or Integer
-	 */
-	private Object parse(Object incValue) {
-		String casted = String.valueOf(incValue);
-
-		if (incValue == null) {
-			return Integer.valueOf(0);
-		}
-		if (incValue instanceof String) {
-
-			try {
-				if (casted.contains(".") || casted.contains("E")) {
-					return Double.parseDouble(casted);
-				}
-
-				return Integer.parseInt(casted);
-			} catch (NumberFormatException e) {
-				throw new ValueWrapperException(
-						"Result of operation is undefined.Parsing failed for\'" + casted + "\'");
-			}
-		} else if (incValue instanceof Double) {
-			return Double.valueOf((Double.parseDouble(casted)));
-		} else {
-			return Integer.valueOf(Integer.parseInt(casted));
-		}
-	}
-
-	/**
-	 * Method checks if argument's type is supported. Supported types are
-	 * Integer,Double,String or null
-	 * 
-	 * @param incValue
-	 *            - argument whose type we want check
-	 * @throws ValueWrapperException
-	 *             - if argument's type is not supported
+	 *             - ako tip argumenta nije podržan
 	 */
 	private void checkType(Object incValue) {
 		if (!(incValue == null || incValue instanceof Double || incValue instanceof Integer
@@ -270,14 +243,13 @@ public class ValueWrapper {
 	}
 
 	/**
-	 * Method creates array with two elements,every element is double value of
-	 * argument
+	 * Metoda vraća Double vrijednost dva broj u obliku polja
 	 * 
 	 * @param number1
-	 *            - first argument
+	 *            - prvi argument
 	 * @param number2
-	 *            - second argument
-	 * @return double array
+	 *            - drugi argument
+	 * @return polje doublea
 	 */
 	private double[] getDoubles(Object number1, Object number2) {
 		double[] array = new double[2];

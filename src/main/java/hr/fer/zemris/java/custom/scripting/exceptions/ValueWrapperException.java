@@ -1,7 +1,9 @@
 package hr.fer.zemris.java.custom.scripting.exceptions;
 
+import hr.fer.zemris.java.custom.scripting.ValueWrapper;
+
 /**
- * Class implements specific exception for ValueWrapper
+ * Razred predstavlja iznimku koja se može koristit u {@link ValueWrapper}
  * 
  * @author Mihael
  *
@@ -14,10 +16,10 @@ public class ValueWrapperException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Public constructor
+	 * Javni konstruktor
 	 * 
 	 * @param str
-	 *            - exception explanation
+	 *            - opis iznimke
 	 */
 	public ValueWrapperException(String str) {
 		super(str);

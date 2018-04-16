@@ -1,33 +1,39 @@
 package hr.fer.zemris.java.hw06.observer2;
 
+import java.util.Objects;
+
 /**
- * Class implements changes counter
+ * Razred predstavlja brojač promjena
  * 
  * @author Mihael
  *
  */
 public class ChangeCounter implements IntegerStorageObserver {
 	/**
-	 * Numbers of changes
+	 * Broj promjena
 	 */
 	private int numberOfChanges;
 
 	/**
-	 * Public constructor
+	 * Javni konstruktor
 	 */
 	public ChangeCounter() {
 		numberOfChanges = 0;
 	}
 
 	/**
-	 * When stored value is changed,method increments number of changes and prints
-	 * current number of changes
+	 * Kada je pohranjena vrijendost promjenjena,metoda inkrementira brojač promjena
+	 * i ispisuje ga
 	 * 
 	 * @param istorage
-	 *            - structure with informations about last change
+	 *            - opisnik zadnje promjene
+	 * 
+	 * @throws NullPointerException
+	 *             - ako je argument null
 	 */
 	@Override
 	public void valueChanged(IntegerStorageChange istorage) {
+		Objects.requireNonNull(istorage);
 		System.out.println("Number of value changes since tracking: " + (++numberOfChanges));
 	}
 }

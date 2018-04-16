@@ -1,19 +1,18 @@
 package hr.fer.zemris.java.hw06.observer2;
 
 /**
- * Interface with method which accepts {@link IntegerStorage} when stored value
- * is changed
+ * Sučelje s jednom metodom koja je obavještena kada se vrijednost promjenila.
+ * Sučelje mora svaki promatrač implementirati
  * 
  * @author Mihael
  *
  */
 public interface IntegerStorageObserver {
 	/**
-	 * Method is called when stored value is changed
+	 * Metoda koja je pozvana pri promjeni vrijednosti
 	 * 
 	 * @param istorage
-	 *            - reference to structure {@link IntegerStorageChange} with
-	 *            informations about last change
+	 *            - opisnik zadnje promjene
 	 */
 	public void valueChanged(IntegerStorageChange istorage);
 }

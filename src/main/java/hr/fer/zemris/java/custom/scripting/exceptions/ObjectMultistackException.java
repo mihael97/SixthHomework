@@ -1,7 +1,9 @@
 package hr.fer.zemris.java.custom.scripting.exceptions;
 
+import hr.fer.zemris.java.custom.scripting.ObjectMultistack;
+
 /**
- * Class implements exception which can be thrown in {@link ObjectMultistackTest}
+ * Razred predstavlja iznimku koja se može koristiti u {@link ObjectMultistack}
  * 
  * @author Mihael
  *
@@ -14,10 +16,10 @@ public class ObjectMultistackException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Public constructor with string argument we want to print
+	 * Javni konstruktor
 	 * 
 	 * @param text
-	 *            - exception explanation
+	 *            - opis iznimke
 	 */
 	public ObjectMultistackException(String text) {
 		super(text);

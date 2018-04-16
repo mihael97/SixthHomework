@@ -3,36 +3,34 @@ package hr.fer.zemris.java.hw06.observer2;
 import java.util.Objects;
 
 /**
- * Class implements structure with attributes: storage(type
- * {@link IntegerStorage}) and previous and current stored values(type primitive
- * integer). It is used for storing more informations about last change
+ * Razred predstavlja opisnik koji sa svojim atrinutima opisuje zadnju promjenu
  * 
  * @author Mihael
  *
  */
 public class IntegerStorageChange {
 	/**
-	 * Reference to IntegerStorage
+	 * Referenca na {@link IntegerStorage}
 	 */
 	private IntegerStorage storage;
 	/**
-	 * Reference to previous value
+	 * Prijašnja vrijednost
 	 */
 	private int beforeChange;
 	/**
-	 * Reference to current stored value
+	 * Trenutna vrijednost
 	 */
 	private int afterChange;
 
 	/**
-	 * Constructor which makes new {@link IntegerStorageChange}
+	 * Konstruktor koji stvara novi {@link IntegerStorageChange}
 	 * 
 	 * @param storage
 	 *            - {@link IntegerStorage}
 	 * @param beforeChange
-	 *            - value before change
+	 *            - prijašnja vrijednost
 	 * @param afterChange
-	 *            - value after change
+	 *            - sadašnja vrijednost
 	 */
 	public IntegerStorageChange(IntegerStorage storage, int beforeChange, int afterChange) {
 		this.storage = Objects.requireNonNull(storage);
@@ -41,7 +39,7 @@ public class IntegerStorageChange {
 	}
 
 	/**
-	 * Returns reference {@link IntegerStorage}
+	 * Vraća referencu na {@link IntegerStorage}
 	 * 
 	 * @return {@link IntegerStorage}
 	 */
@@ -50,18 +48,18 @@ public class IntegerStorageChange {
 	}
 
 	/**
-	 * Returns value which was stored before change
+	 * Vraća prošlu pohranjenu vrijednost
 	 * 
-	 * @return value before change
+	 * @return vrijednost prije promjene
 	 */
 	public int getBeforeChange() {
 		return beforeChange;
 	}
 
 	/**
-	 * Returns value which is currently stored
+	 * Trenutno pohranjena vrijednost
 	 * 
-	 * @return currently stored value
+	 * @return trenutno pohranjena vrijednost
 	 */
 	public int getAfterChange() {
 		return afterChange;

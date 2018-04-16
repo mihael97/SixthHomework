@@ -1,7 +1,12 @@
 package hr.fer.zemris.java.hw06.observer2;
 
+import java.util.Objects;
+
+import hr.fer.zemris.java.hw06.observer1.IntegerStorage;
+
 /**
- * Class implements process which prints double value of current stored value
+ * Razred predstavlja naredbu ispisavanja dvostruko uvećane pohranjene
+ * vrijednosti
  * 
  * @author Mihael
  *
@@ -9,32 +14,34 @@ package hr.fer.zemris.java.hw06.observer2;
 public class DoubleValue implements IntegerStorageObserver {
 
 	/**
-	 * Limit how much time we want to print double value of stored integer
+	 * Limit koliko želimo ispisati dvostruku vrijednost
 	 */
 	private int limit;
 
 	/**
-	 * Public constructor
+	 * Javni konstruktor
 	 * 
 	 * @param number
-	 *            - how much times we want to print double value of current stored
-	 *            integer
+	 *            - koliko puta želimo ispisati uvećanu vrijednost
 	 */
 	public DoubleValue(int number) {
 		limit = number;
 	}
 
 	/**
-	 * When stored value is changed,method prints double value of current stored
-	 * value. When method is called n times(n is given to the constructor at the
-	 * beginning), it de-registers this observer from observers list in
-	 * {@link IntegerStorage}
+	 * Kada je pohranjena vrijednost promjenjena,ispisuje dvostruku vrijednost Kada
+	 * je metoda pozvana n puta(n je zadan na početku konstruktoru) metoda briše
+	 * trenutnog pratitelja iz liste pratitelja u {@link IntegerStorage}
 	 * 
 	 * @param istorage
-	 *            - structure with informations about last change
+	 *            - opisnik zadnje promjene
+	 * @throws NullPointerException
+	 *             - ako je argument null
 	 */
 	@Override
 	public void valueChanged(IntegerStorageChange istorage) {
+
+		Objects.requireNonNull(istorage);
 		System.out.println("Double value: " + 2 * istorage.getStorage().getValue());
 
 		if (--limit == 0) {

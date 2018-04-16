@@ -1,7 +1,7 @@
 package hr.fer.zemris.java.hw06.observer1;
 
 /**
- * First example
+ * Prvi primjer
  * 
  * @author Mihael
  *
@@ -9,7 +9,7 @@ package hr.fer.zemris.java.hw06.observer1;
 public class ObserverExample {
 
 	/**
-	 * Main program
+	 * Glavni program
 	 * 
 	 * @param args
 	 */
@@ -26,7 +26,7 @@ public class ObserverExample {
 		istorage.addObserver(new DoubleValue(1));
 		istorage.addObserver(new DoubleValue(2));
 		istorage.addObserver(new DoubleValue(2));
-		
+
 		istorage.setValue(13);
 		istorage.setValue(22);
 		istorage.setValue(15);

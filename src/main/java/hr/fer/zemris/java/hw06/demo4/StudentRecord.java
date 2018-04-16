@@ -3,61 +3,60 @@ package hr.fer.zemris.java.hw06.demo4;
 import java.util.Objects;
 
 /**
- * Method presents every student with his attributes jmbag,name,surname,grade
- * and points from laboratory exercises,midterm exam and final exam
+ * Metoda predstavlja zapis svakog studenta sa svojim
+ * atrubutima:jmbag,ime,prezime,bodovi sa završnog,međuispita i vježbi i ocjena
  * 
  * @author Mihael
  *
  */
 public class StudentRecord {
 	/**
-	 * Student's jmbag
+	 * Studentov jmbag
 	 */
 	private String jmbag;
 	/**
-	 * Student's name
+	 * Studentovo ime
 	 */
 	private String name;
 	/**
-	 * Student's surname
+	 * Studentovo prezime
 	 */
 	private String surname;
 	/**
-	 * Student's midterm exam points
+	 * Studentovi bodovi s međuispita
 	 */
 	private Double pointsMI;
 	/**
-	 * Student's final exam points
+	 * Studentovi bodovi s završnog ispita
 	 */
 	private Double pointsZI;
 	/**
-	 * Student's points from laboratory exercises
+	 * Studentovi bodovi iz vježbi
 	 */
 
 	private Double pointsLab;
 	/**
-	 * Student's grade
+	 * Studentova ocjena
 	 */
 	private Integer grade;
 
 	/**
-	 * Public constructor which crates new {@link StudentRecord} with arguments form
-	 * constructor
+	 * Konstruktor stvar novi zapis o studentu
 	 * 
 	 * @param jmbag
-	 *            - student's jmbag
+	 *            - studentov jmbag
 	 * @param name
-	 *            - student's name
+	 *            - studentovo ime
 	 * @param surname
-	 *            - student's surname
+	 *            - studentovo prezime
 	 * @param pointsMI
-	 *            - student's midterm exam points
+	 *            - studentovi bodovi s međuispita
 	 * @param pointsZI
-	 *            - student's final exam points
+	 *            - studentovi bodovi sa završnog ispita
 	 * @param pointsLab
-	 *            - student's points from laboratory exercises
+	 *            - studentovi bodovi iz vježbi
 	 * @param grade
-	 *            - student's grade
+	 *            - studentova ocjena
 	 */
 	public StudentRecord(String jmbag, String name, String surname, Double pointsMI, Double pointsZI, Double pointsLab,
 			Integer grade) {
@@ -72,63 +71,63 @@ public class StudentRecord {
 	}
 
 	/**
-	 * Method return student's jmbag
+	 * Metoda vraća studentov jmbag
 	 * 
-	 * @return student's jmbag
+	 * @return studentov jmbag
 	 */
 	public String getJmbag() {
 		return jmbag;
 	}
 
 	/**
-	 * Method return studnet's name
+	 * Metoda vraća studentovo ime
 	 * 
-	 * @return student's name
+	 * @return studentovo ime
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * Method return student's surname
+	 * Metoda vraća studentovo prezime
 	 * 
-	 * @return student's surname
+	 * @return studentovo prezime
 	 */
 	public String getSurname() {
 		return surname;
 	}
 
 	/**
-	 * Method returns student's midterm exam points
+	 * Metoda vraća studentove bodove s međuispita
 	 * 
-	 * @return midterm points from student
+	 * @return studentovi bodovi s međuispita
 	 */
 	public Double getPointsMI() {
 		return pointsMI;
 	}
 
 	/**
-	 * Method return student's final exam points
+	 * Metoda vraća studentove bodove sa završnog ispita
 	 * 
-	 * @return final exam points
+	 * @return bodovi sa završnog ispita
 	 */
 	public Double getPointsZI() {
 		return pointsZI;
 	}
 
 	/**
-	 * Method return student's points from laboratory exercises
+	 * Metoda vraća studentove bodove iz laboratorijskih vježbi
 	 * 
-	 * @return student's laboratory exercise points
+	 * @return studentovi bodovi iz vježbi
 	 */
 	public Double getPointsLab() {
 		return pointsLab;
 	}
 
 	/**
-	 * Getter for student's grade
+	 * Metoda vraća studentovu ocjenu
 	 * 
-	 * @return student's grade
+	 * @return studentova ocjena
 	 */
 	public Integer getGrade() {
 		return grade;

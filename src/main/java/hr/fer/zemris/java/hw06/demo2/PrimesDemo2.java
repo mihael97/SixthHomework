@@ -1,14 +1,14 @@
 package hr.fer.zemris.java.hw06.demo2;
 
 /**
- * Second example
+ * Drugi primjer
  * 
  * @author Mihael
  *
  */
 public class PrimesDemo2 {
 	/**
-	 * Main program
+	 * Glavni program
 	 * 
 	 * @param args
 	 */

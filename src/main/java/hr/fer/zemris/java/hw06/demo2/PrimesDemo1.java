@@ -1,7 +1,7 @@
 package hr.fer.zemris.java.hw06.demo2;
 
 /**
- * First example
+ * Prvi primjer iz upute
  * 
  * @author Mihael
  *
@@ -9,7 +9,7 @@ package hr.fer.zemris.java.hw06.demo2;
 public class PrimesDemo1 {
 
 	/**
-	 * Main program
+	 * Glavni program
 	 * 
 	 * @param args
 	 */

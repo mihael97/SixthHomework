@@ -19,10 +19,11 @@ public class ValueWrapper {
 	 * Public constructor for value initialization
 	 * 
 	 * @param value
-	 * @throws NullPointerException
-	 *             - if given value is null
+	 * @throws ValueWrapperException
+	 *             - if type of value is not supported
 	 */
 	public ValueWrapper(Object value) {
+		checkType(value);
 		this.value = value;
 	}
 
@@ -68,13 +69,13 @@ public class ValueWrapper {
 
 	/**
 	 * Method compares current stored value and argument. If current value is
-	 * smaller than argument,returned value will be integer less than zero. If
+	 * smaller than argument,returned value will be integer negative integer. If
 	 * stored value is greater,returned integer will be positive integer. If values
-	 * are equal, returned value will be 0
+	 * are equal or null, returned value will be 0
 	 * 
 	 * @param withValue
 	 *            - argument used for comparison
-	 * @return integer
+	 * @return integer(presents relation between stored value and argument)
 	 */
 	public int numCompare(Object withValue) {
 		if (value == null && withValue == null)
@@ -84,14 +85,14 @@ public class ValueWrapper {
 		Object second = cast();
 
 		if (first instanceof Double || second instanceof Double) {
-			return ((Double) first).compareTo((Double) second);
+			return ((Double) second).compareTo((Double) first);
 		}
 
-		return ((Integer) first).compareTo((Integer) second);
+		return ((Integer) second).compareTo((Integer) first);
 	}
 
 	/**
-	 * Method return current stored value
+	 * Method returns current stored value
 	 * 
 	 * @return current value
 	 */
@@ -120,6 +121,8 @@ public class ValueWrapper {
 	 * 
 	 * @throws ValueWrapperException
 	 *             - if operation is not supported
+	 * @throws ArithmeticException
+	 *             - is operation is divide and denominator is zero
 	 */
 	private void calculate(Object incValue, String string) {
 		checkType(incValue);
@@ -140,7 +143,7 @@ public class ValueWrapper {
 		case "subtract":
 			if (number1 instanceof Double || number2 instanceof Double) {
 				double[] array = getDoubles(number1, number2);
-				value = Double.valueOf(array[0] - array[1]);
+				value = Double.valueOf(array[1] - array[0]);
 			} else {
 				value = Integer.valueOf((Integer) number2 - (Integer) number1);
 			}
@@ -158,19 +161,19 @@ public class ValueWrapper {
 				double[] array = getDoubles(number1, number2);
 
 				if (array[1] == 0) {
-					throw new ArithmeticException("Number can't be divided by zero!");
+					throw new ArithmeticException("Number can't be divided with zero!");
 				}
 
-				value = Double.valueOf(array[0] - array[1]);
+				value = Double.valueOf(array[1] / array[0]);
 
 			} else {
 				Integer first = (Integer) number1;
 
 				if (first.intValue() == 0) {
-					throw new ArithmeticException("Number can't be divided by zero!");
+					throw new ArithmeticException("Number can't be divided with zero!");
 				}
 
-				value = Double.valueOf((Integer) number2 / first);
+				value = Integer.valueOf((Integer) number2 / first);
 			}
 			break;
 		default:
@@ -213,10 +216,10 @@ public class ValueWrapper {
 	}
 
 	/**
-	 * Method converts Object to some {@link Number} type. If given argument is
-	 * null,it will be converted to Integer with value 0. If argument is String,it
-	 * will be converted to Double of Integer,depends if contains '.' or 'E'. If
-	 * given argument are Double of Integer,returned Object will have same type
+	 * Method converts Object to some {@link Number} type. If argument is null,it
+	 * will be converted to Integer with value 0. If argument is String,it will be
+	 * converted to Double or Integer,depends if it contains '.' or 'E'. If argument
+	 * is Double or Integer,returned Object will have same type
 	 * 
 	 * @param incValue
 	 * @return converted Object
@@ -239,7 +242,8 @@ public class ValueWrapper {
 
 				return Integer.parseInt(casted);
 			} catch (NumberFormatException e) {
-				throw new ValueWrapperException("Result of operation is undefined.Parse failed for\'" + casted + "\'");
+				throw new ValueWrapperException(
+						"Result of operation is undefined.Parsing failed for\'" + casted + "\'");
 			}
 		} else if (incValue instanceof Double) {
 			return Double.valueOf((Double.parseDouble(casted)));
@@ -249,16 +253,19 @@ public class ValueWrapper {
 	}
 
 	/**
-	 * Method check if given argument's type is supported. Supported types are
+	 * Method checks if argument's type is supported. Supported types are
 	 * Integer,Double,String or null
 	 * 
 	 * @param incValue
 	 *            - argument whose type we want check
+	 * @throws ValueWrapperException
+	 *             - if argument's type is not supported
 	 */
 	private void checkType(Object incValue) {
 		if (!(incValue == null || incValue instanceof Double || incValue instanceof Integer
 				|| incValue instanceof String)) {
-			throw new RuntimeException("Argument must be instance of Double,Integer or String. Also it can be null!");
+			throw new ValueWrapperException(
+					"Argument must be instance of Double,Integer or String. Also it can be null!");
 		}
 	}
 

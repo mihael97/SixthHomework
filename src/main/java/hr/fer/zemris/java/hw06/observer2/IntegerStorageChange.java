@@ -1,10 +1,11 @@
 package hr.fer.zemris.java.hw06.observer2;
 
+import java.util.Objects;
+
 /**
  * Class implements structure with attributes: storage(type
- * {@link IntegerStorage}) and before and after change stored values(type
- * primitive integer). It is used for storing more informations about last
- * change
+ * {@link IntegerStorage}) and previous and current stored values(type primitive
+ * integer). It is used for storing more informations about last change
  * 
  * @author Mihael
  *
@@ -15,11 +16,11 @@ public class IntegerStorageChange {
 	 */
 	private IntegerStorage storage;
 	/**
-	 * Reference to previous value of stored value
+	 * Reference to previous value
 	 */
 	private int beforeChange;
 	/**
-	 * Reference to future value of stored value
+	 * Reference to current stored value
 	 */
 	private int afterChange;
 
@@ -34,14 +35,13 @@ public class IntegerStorageChange {
 	 *            - value after change
 	 */
 	public IntegerStorageChange(IntegerStorage storage, int beforeChange, int afterChange) {
-		super();
-		this.storage = storage;
-		this.beforeChange = beforeChange;
-		this.afterChange = afterChange;
+		this.storage = Objects.requireNonNull(storage);
+		this.beforeChange = Objects.requireNonNull(beforeChange);
+		this.afterChange = Objects.requireNonNull(afterChange);
 	}
 
 	/**
-	 * Returns {@link IntegerStorage}
+	 * Returns reference {@link IntegerStorage}
 	 * 
 	 * @return {@link IntegerStorage}
 	 */

@@ -21,7 +21,7 @@ public class ChangeCounter implements IntegerStorageObserver {
 
 	/**
 	 * When stored value is changed,method increments number of changes and prints
-	 * how current value
+	 * current number of changes
 	 * 
 	 * @param istorage
 	 *            - modified {@link IntegerStorage}

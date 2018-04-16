@@ -1,5 +1,6 @@
 package hr.fer.zemris.java.custom.scripting;
 
+import java.util.Objects;
 import java.util.TreeMap;
 
 import hr.fer.zemris.java.custom.scripting.exceptions.ObjectMultistackException;
@@ -16,7 +17,7 @@ public class ObjectMultistack {
 	/**
 	 * Map which contains String as key and linked-list stack as value
 	 */
-	TreeMap<String, MultistackEntry> keyMap;
+	private TreeMap<String, MultistackEntry> keyMap;
 
 	/**
 	 * Public constructor for initialization
@@ -33,9 +34,14 @@ public class ObjectMultistack {
 	 *            - key
 	 * @param valueWrapper
 	 *            - value we want to store
+	 * @throws NullPointerException
+	 *             - if value is null
 	 * 
 	 */
 	public void push(String name, ValueWrapper valueWrapper) {
+
+		Objects.requireNonNull(valueWrapper);
+
 		if (keyMap.containsKey(name)) {
 			keyMap.replace(name, new MultistackEntry(valueWrapper, keyMap.get(name)));
 		} else {
@@ -44,7 +50,7 @@ public class ObjectMultistack {
 	}
 
 	/**
-	 * Method return first element from stack and deletes it form top of stack
+	 * Method returns first element from stack and deletes it form top
 	 * 
 	 * @param name
 	 *            - key
@@ -69,7 +75,7 @@ public class ObjectMultistack {
 	}
 
 	/**
-	 * Method check if stack exists for specific key
+	 * Method checks if stack exists for specific key
 	 * 
 	 * @param name
 	 *            -key
@@ -124,13 +130,12 @@ public class ObjectMultistack {
 		 *            - next node
 		 */
 		public MultistackEntry(ValueWrapper value, MultistackEntry next) {
-			super();
 			this.value = value;
 			this.next = next;
 		}
 
 		/**
-		 * Method return node's value
+		 * Method returns node's value
 		 * 
 		 * @return value {@link ValueWrapper}
 		 */

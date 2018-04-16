@@ -21,10 +21,10 @@ public class ChangeCounter implements IntegerStorageObserver {
 
 	/**
 	 * When stored value is changed,method increments number of changes and prints
-	 * how current value
+	 * current number of changes
 	 * 
 	 * @param istorage
-	 *            - structure with informations about change
+	 *            - structure with informations about last change
 	 */
 	@Override
 	public void valueChanged(IntegerStorageChange istorage) {

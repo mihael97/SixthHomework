@@ -26,8 +26,8 @@ public class DoubleValue implements IntegerStorageObserver {
 
 	/**
 	 * When stored value is changed,method prints double value of current stored
-	 * value. When method is called for n times(n is given to the constructor at the
-	 * begin), it de-registers this observer from observers list in
+	 * value. When method is called n times(n is given to the constructor at the
+	 * beginning), it de-registers this observer from observers list in
 	 * {@link IntegerStorage}
 	 * 
 	 * @param istorage

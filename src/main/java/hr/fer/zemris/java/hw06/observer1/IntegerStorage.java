@@ -20,7 +20,7 @@ public class IntegerStorage {
 	private List<IntegerStorageObserver> observers; // use ArrayList here!!!
 
 	/**
-	 * Constructor which sets value to given argument
+	 * Constructor which sets value to argument
 	 * 
 	 * @param initialValue
 	 *            - first value
@@ -31,8 +31,7 @@ public class IntegerStorage {
 	}
 
 	/**
-	 * Method adds new observer to list. After every change,observers and contacted
-	 * and
+	 * Method adds new observer to list.
 	 * 
 	 * @param observer
 	 *            - observer we want to add
@@ -60,7 +59,7 @@ public class IntegerStorage {
 	}
 
 	/**
-	 * Method return current stored value
+	 * Method returns current stored value
 	 * 
 	 * @return value - stored value
 	 */
@@ -69,7 +68,7 @@ public class IntegerStorage {
 	}
 
 	/**
-	 * If given value is not same as stored one,method sets stored value to argument
+	 * If argument is not same as stored value,method sets stored value to argument
 	 * 
 	 * @param value
 	 *            - new value we want to store

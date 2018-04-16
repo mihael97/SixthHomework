@@ -9,6 +9,7 @@ package hr.fer.zemris.java.hw06.observer2;
  */
 public interface IntegerStorageObserver {
 	/**
+	 * Method is called when stored value is changed
 	 * 
 	 * @param istorage
 	 *            - reference to structure {@link IntegerStorageChange} with

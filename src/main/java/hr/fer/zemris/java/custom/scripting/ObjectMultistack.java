@@ -36,11 +36,12 @@ public class ObjectMultistack {
 	 * @param valueWrapper
 	 *            - vrijednost koju želimo pohraniti
 	 * @throws NullPointerException
-	 *             - ako je predana vrijednost null
+	 *             - ako je predana vrijednost ili naziv null
 	 * 
 	 */
 	public void push(String name, ValueWrapper valueWrapper) {
 
+		Objects.requireNonNull(name);
 		Objects.requireNonNull(valueWrapper);
 
 		if (keyMap.containsKey(name)) {
@@ -86,10 +87,13 @@ public class ObjectMultistack {
 	 *             - ako je stog prazan ili ne postoji
 	 */
 	private MultistackEntry checkIfExists(String name) {
+		
+		if(!keyMap.containsKey(name)) 
+			throw new ObjectMultistackException("Key doesn't exist!");
 		MultistackEntry entry = keyMap.get(name);
 
 		if (entry == null) {
-			throw new ObjectMultistackException("Stack is empty of key doesn't exist!");
+			throw new ObjectMultistackException("Stack is empty!");
 		}
 
 		return entry;

@@ -38,13 +38,21 @@ public class ValueWrapperTest {
 		assertEquals("Name", (String) wrapper.getValue());
 	}
 
-	@Test(expected = ValueWrapperException.class)
+	@Test
 	public void booleanTest() {
-		@SuppressWarnings("unused")
 		ValueWrapper wrapper = new ValueWrapper(true);
+
+		assertTrue(wrapper.getValue() instanceof Boolean);
+		assertEquals(true, wrapper.getValue());
 	}
 
 	// mathematical operations
+
+	@Test(expected=ValueWrapperException.class)
+	public void booleanOperation() {
+		ValueWrapper wrapper = new ValueWrapper(true);
+		wrapper.add(Integer.valueOf(1));
+	}
 
 	// integers
 	@Test
@@ -198,39 +206,39 @@ public class ValueWrapperTest {
 	}
 
 	// numCompare
-	
+
 	@Test
 	public void nullVariables() {
-		ValueWrapper wrapper=new ValueWrapper(null);
-		
+		ValueWrapper wrapper = new ValueWrapper(null);
+
 		assertEquals(0, wrapper.numCompare(null));
 	}
-	
+
 	@Test
 	public void nullAndIntegerFirst() {
-		ValueWrapper wrapper=new ValueWrapper(null);
-		
+		ValueWrapper wrapper = new ValueWrapper(null);
+
 		assertEquals(0, wrapper.numCompare(0));
 	}
-	
+
 	@Test
 	public void nullAndIntegerSecond() {
-		ValueWrapper wrapper=new ValueWrapper(null);
-		
-		assertTrue(wrapper.numCompare(Integer.valueOf(3))<0);
+		ValueWrapper wrapper = new ValueWrapper(null);
+
+		assertTrue(wrapper.numCompare(Integer.valueOf(3)) < 0);
 	}
-	
+
 	@Test
 	public void twoIntegerVariables() {
-		ValueWrapper wrapper=new ValueWrapper(Integer.valueOf(4));
-		
-		assertTrue(wrapper.numCompare(Integer.valueOf(3))>0);
+		ValueWrapper wrapper = new ValueWrapper(Integer.valueOf(4));
+
+		assertTrue(wrapper.numCompare(Integer.valueOf(3)) > 0);
 	}
-	
+
 	@Test
 	public void twoDoublesTest() {
-		ValueWrapper wrapper=new ValueWrapper(Double.valueOf(4.9));
-		
-		assertTrue(wrapper.numCompare(Double.valueOf(5.1))<0);
+		ValueWrapper wrapper = new ValueWrapper(Double.valueOf(4.9));
+
+		assertTrue(wrapper.numCompare(Double.valueOf(5.1)) < 0);
 	}
 }

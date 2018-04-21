@@ -51,6 +51,13 @@ public class ObjectMultistackTest {
 		assertFalse(stack.isEmpty("Ime"));
 	}
 	
+	@Test(expected=NullPointerException.class)
+	public void nullKey() {
+		ObjectMultistack stack = new ObjectMultistack();
+
+		stack.push(null, new ValueWrapper(null));
+	}
+	
 	@Test(expected=ObjectMultistackException.class)
 	public void invalidKey() {
 		ObjectMultistack stack = new ObjectMultistack();

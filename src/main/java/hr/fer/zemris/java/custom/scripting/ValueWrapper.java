@@ -24,7 +24,6 @@ public class ValueWrapper {
 	 *             - ako tip podataka nije podržan
 	 */
 	public ValueWrapper(Object value) {
-		checkType(value);
 		this.value = value;
 	}
 
@@ -111,14 +110,13 @@ public class ValueWrapper {
 	 *             - ako tip argumenta nije podržan
 	 */
 	public void setValue(Object value) {
-		checkType(value);
 		this.value = value;
 	}
 
 	/**
 	 * Metoda vraća sljedeću pohranjenu vrijednost ovisno o operaciji
 	 * 
-	 * @param incValue
+	 * @param argument
 	 *            - argument
 	 * @param string
 	 *            - operacija koju ćemo izvršiti
@@ -128,9 +126,9 @@ public class ValueWrapper {
 	 * @throws ArithmeticException
 	 *             - ako se dijeli sa nulom
 	 */
-	private void calculate(Object incValue, String string) {
-		checkType(incValue);
-		Object number1 = cast(incValue);
+	private void calculate(Object argument, String string) {
+		checkType(argument);
+		Object number1 = cast(argument);
 		Object number2 = cast(value);
 
 		switch (string.trim().toLowerCase()) {
@@ -229,14 +227,14 @@ public class ValueWrapper {
 	 * Metoda provjerava je li tip argumenta podržan. Podržani tipovi su
 	 * Double,Integer,String i null
 	 * 
-	 * @param incValue
+	 * @param argument
 	 *            - argument čiji tip želimo provjeriti
 	 * @throws ValueWrapperException
 	 *             - ako tip argumenta nije podržan
 	 */
-	private void checkType(Object incValue) {
-		if (!(incValue == null || incValue instanceof Double || incValue instanceof Integer
-				|| incValue instanceof String)) {
+	private void checkType(Object argument) {
+		if (!(argument == null || argument instanceof Double || argument instanceof Integer
+				|| argument instanceof String)) {
 			throw new ValueWrapperException(
 					"Argument must be instance of Double,Integer or String. Also it can be null!");
 		}
